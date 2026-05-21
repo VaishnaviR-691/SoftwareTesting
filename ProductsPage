@@ -1,0 +1,35 @@
+using OpenQA.Selenium;
+
+public class ProductsPage
+{
+    private IWebDriver driver;
+
+    public ProductsPage(IWebDriver driver)
+    {
+        this.driver = driver;
+    }
+
+    private By productsTitle = By.ClassName("title");
+    private By menuButton = By.Id("react-burger-menu-btn");
+    private By logoutLink = By.Id("logout_sidebar_link");
+
+    public bool IsLoginSuccessful()
+    {
+        return driver.FindElement(productsTitle).Text.Contains("Products");
+    }
+
+    public void OpenMenu()
+    {
+        driver.FindElement(menuButton).Click();
+    }
+
+    public void Logout()
+    {
+        driver.FindElement(logoutLink).Click();
+    }
+
+    public bool IsLogoutSuccessful()
+    {
+        return driver.Url.Contains("saucedemo");
+    }
+}
